@@ -43,4 +43,6 @@ class CategoryBrandsController extends Controller
             'data' => $brands
         ]);
     }
+
+    
 }

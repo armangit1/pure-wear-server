@@ -61,5 +61,6 @@ Route::get('/shop/category', [CategoryBrandsController::class, 'category']);
 Route::get('/shop/brand', [CategoryBrandsController::class, 'brands']);
 Route::get('/get-product', [HomeProductController::class, 'getProduct']);
 Route::get('/get-product/{id}', [HomeProductController::class, 'showProduct']);
+Route::get('/get-cart-items', [HomeProductController::class, 'getCartItems']);
 
 

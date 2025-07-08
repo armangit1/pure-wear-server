@@ -90,4 +90,30 @@ class HomeProductController extends Controller
 
 
     }
+
+public function getcartitems(Request $request)
+{
+    $idsParam = $request->query('ids', '');
+
+    // Convert comma-separated string to array
+    $productIds = array_filter(explode(',', $idsParam), fn($id) => is_numeric($id));
+
+    $products = Product::with(['category', 'brand', 'images'])
+        ->whereIn('id', $productIds)
+        ->get();
+
+    if ($products->isEmpty()) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'No products found for the provided IDs.',
+            'data' => []
+        ], 404);
+    }
+
+    return response()->json([
+        'status' => 200,
+        'data' => $products
+    ]);
+}
+
 }
